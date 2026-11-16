@@ -78,7 +78,15 @@ python main.py activate R02
 
 ## Measured accuracy report
 
-Copy `docs/test_manifest.example.csv` to a private dataset folder. Add held-out images with `image,expected_id` columns. Paths are relative to the CSV; use a registered ID for a known person and a blank expected ID for an unregistered visitor. Each image must contain exactly one face. Bad images abort evaluation rather than silently inflating accuracy. Do not reuse enrollment photos.
+Create a CSV in a private dataset folder with `image,expected_id` columns, for example:
+
+```csv
+image,expected_id
+test_photos/resident_01_new_photo.jpg,R01
+test_photos/unregistered_visitor.jpg,
+```
+
+Paths are relative to the CSV; use a registered ID for a known person and a blank expected ID for an unregistered visitor. Each image must contain exactly one face. Bad images abort evaluation rather than silently inflating accuracy. Do not reuse enrollment photos.
 
 ```sh
 python main.py evaluate dataset/test_manifest.csv
